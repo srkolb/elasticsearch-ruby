@@ -85,6 +85,8 @@ module Elasticsearch
           arguments[:path_data]         ||= ENV.fetch('TEST_CLUSTER_DATA',      '/tmp/elasticsearch_test')
           arguments[:path_work]         ||= ENV.fetch('TEST_CLUSTER_TMP',       '/tmp')
           arguments[:path_logs]         ||= ENV.fetch('TEST_CLUSTER_LOGS',      '/tmp/log/elasticsearch')
+          arguments[:path_conf]         ||= ENV.fetch('TEST_CLUSTER_CONF',      '/etc/elasticsearch')
+          arguments[:path_script]       ||= ENV.fetch('TEST_CLUSTER_SCRIPT',    '/tmp/elasticsearch_script')
           arguments[:es_params]         ||= ENV.fetch('TEST_CLUSTER_PARAMS',    '')
           arguments[:multicast_enabled] ||= ENV.fetch('TEST_CLUSTER_MULTICAST', 'true')
           arguments[:timeout]           ||= (ENV.fetch('TEST_CLUSTER_TIMEOUT', 30).to_i)
@@ -123,6 +125,8 @@ module Elasticsearch
                 -D es.path.data=#{arguments[:path_data]} \
                 -D es.path.work=#{arguments[:path_work]} \
                 -D es.path.logs=#{arguments[:path_logs]} \
+                -D es.path.conf=#{arguments[:path_conf]} \
+                -D es.path.script=#{arguments[:path_script]} \
                 -D es.cluster.routing.allocation.disk.threshold_enabled=false \
                 -D es.network.host=#{@@network_host} \
                 -D es.discovery.zen.ping.multicast.enabled=#{arguments[:multicast_enabled]} \
